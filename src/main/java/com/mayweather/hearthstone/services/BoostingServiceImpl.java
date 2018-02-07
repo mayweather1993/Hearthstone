@@ -15,12 +15,12 @@ public class BoostingServiceImpl implements BoosterService {
     private final BoosterRepository boosterRepository;
 
     @Override
-    public void save(Booster booster) {
+    public void save(final Booster booster) {
         boosterRepository.save(booster);
     }
 
     @Override
-    public Optional<Booster> findById(Long id) {
+    public Optional<Booster> findById(final Long id) {
         return boosterRepository.findById(id);
     }
 }

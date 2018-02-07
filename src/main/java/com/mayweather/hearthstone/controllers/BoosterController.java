@@ -24,7 +24,7 @@ public class BoosterController {
     }
 
     @GetMapping("/booster/{id}")
-    public ResponseEntity<Booster> findById(@PathVariable("id") Long id){
+    public ResponseEntity<Booster> findById(@PathVariable("id")final Long id){
         Optional<Booster> booster = boosterService.findById(id);
         return new ResponseEntity<Booster>(HttpStatus.OK);
     }

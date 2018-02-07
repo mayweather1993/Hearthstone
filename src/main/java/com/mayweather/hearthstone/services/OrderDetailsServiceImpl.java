@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class OrderDetailsServiceImpl implements OrderDetailsService {
 
-    private OrderDetailsRepository orderDetailsRepository;
+    private final OrderDetailsRepository orderDetailsRepository;
 
     @Override
-    public double getCost(int fromRank, int toRank, int salaryPerHour) {
+    public double getCost(final int fromRank,final int toRank,final int salaryPerHour) {
         return (double) ((fromRank - toRank) * salaryPerHour);
     }
 }

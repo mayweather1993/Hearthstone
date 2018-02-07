@@ -12,12 +12,12 @@ public class OrderServiceImpl implements OrderService{
     private final OrderRepository orderRepository;
 
     @Override
-    public void save(Order order) {
+    public void save(final Order order) {
         orderRepository.save(order);
     }
 
     @Override
-    public Order findById(Long id) {
+    public Order findById(final Long id) {
         return orderRepository.getOne(id);
     }
 }
