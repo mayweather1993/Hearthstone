@@ -34,6 +34,6 @@ public class Booster implements Serializable {
     @Enumerated
     private Status status;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
     private List<Order> orderList;
 }
