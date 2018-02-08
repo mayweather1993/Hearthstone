@@ -42,6 +42,6 @@ public class BoosterController {
                                             @PathVariable("order_id") final Long order_id) {
         Booster booster = boosterService.addOrderToBooster(order_id, booster_id);
         boosterService.save(booster);
-        return new ResponseEntity<>(booster, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

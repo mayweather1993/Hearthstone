@@ -19,7 +19,7 @@ import java.util.List;
 
 @SpringBootApplication
 @AllArgsConstructor
-public class HearthstoneApplication implements CommandLineRunner {
+public class HearthstoneApplication  {
 
     private final OrderService orderService;
     private final BoosterService boosterService;
@@ -28,7 +28,7 @@ public class HearthstoneApplication implements CommandLineRunner {
         SpringApplication.run(HearthstoneApplication.class, args);
     }
 
-    @Override
+    /*@Override
     public void run(String... args) throws Exception {
         OrderDetails orderDetails = new OrderDetails(1L, 10, 19, 0);
         Order order = new Order(1L, orderDetails);
@@ -43,4 +43,5 @@ public class HearthstoneApplication implements CommandLineRunner {
 
 
     }
+    */
 }

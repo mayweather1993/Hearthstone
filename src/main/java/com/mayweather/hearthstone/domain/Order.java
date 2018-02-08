@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,4 +24,8 @@ public class Order implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     private OrderDetails orderDetails;
+
+    @ManyToOne(targetEntity = Booster.class)
+    @JoinColumn(name = "booster_id")
+    private Booster booster;
 }
