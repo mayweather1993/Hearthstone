@@ -1,31 +1,35 @@
 package com.mayweather.hearthstone.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import java.io.Serializable;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "orderDetails")
-public class OrderDetails {
+@Table(name = "order_Details")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class OrderDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "detail_id")
     private Long id;
 
 
+    @Column(name = "salaryPerRank")
     private int salaryPerRank;
 
-    @Max(value = 25)
-    @Min(value = 1)
+    @Column(name = "fromRank")
     private int fromRank;
 
-    @Max(value = 10)
+    @Column(name = "toRank")
     private int toRank;
+
+
 }

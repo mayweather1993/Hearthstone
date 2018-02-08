@@ -4,9 +4,9 @@ package com.mayweather.hearthstone.services;
 import com.mayweather.hearthstone.data.BoosterRepository;
 import com.mayweather.hearthstone.domain.Booster;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -20,7 +20,13 @@ public class BoostingServiceImpl implements BoosterService {
     }
 
     @Override
-    public Optional<Booster> findById(final Long id) {
-        return boosterRepository.findById(id);
+    public Booster findById(final Long id) {
+        return boosterRepository.getOne(id);
     }
+
+    @Override
+    public Page<Booster> findAll(Pageable pageable) {
+        return boosterRepository.findAll(pageable);
+    }
+
 }

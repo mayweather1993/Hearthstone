@@ -2,10 +2,11 @@ package com.mayweather.hearthstone.services;
 
 
 import com.mayweather.hearthstone.domain.Booster;
-
-import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface BoosterService {
     void save(Booster booster);
-    Optional<Booster> findById(Long id);
+    Booster findById(Long id);
+    Page<Booster> findAll(Pageable pageable);
 }
