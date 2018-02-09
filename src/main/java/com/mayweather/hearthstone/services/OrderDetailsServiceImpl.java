@@ -11,7 +11,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     private final OrderDetailsRepository orderDetailsRepository;
 
     @Override
-    public double getCost(final int fromRank,final int toRank,final int salaryPerHour) {
+    public double getCost(final int fromRank, final int toRank, final int salaryPerHour) {
         return (double) ((fromRank - toRank) * salaryPerHour);
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 
 public interface OrderService {
     void save(Order order);
+
     Order findById(Long id);
+
     Page<Order> getAll(Pageable pageable);
 }

@@ -6,30 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
+@Table(name = "arena_order_details")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order_details")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class OrderDetails implements Serializable {
-
+public class Arena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "detail_id")
+    @Column(name = "arena_order_id")
     private Long id;
 
+    @Column(name = "wins")
+    private int wins;
 
-    @Column(name = "salaryPerRank")
-    private int salaryPerRank;
-
-    @Column(name = "fromRank")
-    private int fromRank;
-
-    @Column(name = "toRank")
-    private int toRank;
-
-
+    private int salary;
 }

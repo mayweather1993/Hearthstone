@@ -28,4 +28,7 @@ public class Order implements Serializable {
     @ManyToOne(targetEntity = Booster.class)
     @JoinColumn(name = "booster_id")
     private Booster booster;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Arena arena;
 }

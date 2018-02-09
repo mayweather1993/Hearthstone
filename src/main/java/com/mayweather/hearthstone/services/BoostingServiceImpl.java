@@ -34,11 +34,17 @@ public class BoostingServiceImpl implements BoosterService {
     }
 
     @Override
-    public Booster addOrderToBooster(Long order_id , Long booster_id) {
+    public Booster addOrderToBooster(Long order_id, Long booster_id) {
         Order order = orderService.findById(order_id);
         orderService.save(order);
         Booster booster = boosterRepository.getOne(booster_id);
         booster.setOrderList(Arrays.asList(order));
         return boosterRepository.save(booster);
+    }
+
+    @Override
+    public Booster addArenaOrderToBooster(long arena_order_id, Long booster_id) {
+
+        return null;
     }
 }

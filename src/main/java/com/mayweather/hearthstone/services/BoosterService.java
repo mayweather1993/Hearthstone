@@ -8,7 +8,12 @@ import org.springframework.data.domain.Pageable;
 
 public interface BoosterService {
     void save(Booster booster);
+
     Booster findById(Long id);
+
     Page<Booster> findAll(Pageable pageable);
-    Booster addOrderToBooster(Long order_id , Long booster_id);
+
+    Booster addOrderToBooster(Long order_id, Long booster_id);
+
+    Booster addArenaOrderToBooster(long arena_order_id , Long booster_id);
 }
