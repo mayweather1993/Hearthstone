@@ -42,11 +42,16 @@ public class BoosterController {
         boosterService.save(booster);
         return new ResponseEntity<>(booster , HttpStatus.OK);
     }
-    @PostMapping("booster/{booster_id}/addArenaOrder/{arena_order_id}")
+    @PostMapping("/booster/{booster_id}/addArenaOrder/{arena_order_id}")
     public ResponseEntity<Booster> addArenaOrder(@PathVariable("booster_id") final Long booster_id,
                                                  @PathVariable("arena_order_id") final Long arena_order_id){
         Booster booster = boosterService.addArenaOrderToBooster(booster_id, arena_order_id);
         boosterService.save(booster);
         return new ResponseEntity<>(booster , HttpStatus.OK);
+    }
+    @PostMapping("/booster/{id}")
+    public ResponseEntity<Booster> setSalary(@PathVariable("id") final Long id , int salary){
+        boosterService.setSalaryToBooster(id , salary);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

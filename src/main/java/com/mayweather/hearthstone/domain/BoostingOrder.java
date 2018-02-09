@@ -20,8 +20,6 @@ import java.io.Serializable;
 @Data
 public class BoostingOrder extends Order implements Serializable {
 
-    @Column(name = "salaryPerRank")
-    private int salaryPerRank;
 
     @Column(name = "fromRank")
     private int fromRank;

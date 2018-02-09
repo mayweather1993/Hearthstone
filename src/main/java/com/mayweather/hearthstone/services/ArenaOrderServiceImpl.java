@@ -2,6 +2,7 @@ package com.mayweather.hearthstone.services;
 
 import com.mayweather.hearthstone.data.ArenaOrderRepository;
 import com.mayweather.hearthstone.domain.ArenaOrder;
+import com.mayweather.hearthstone.domain.Booster;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class ArenaOrderServiceImpl implements ArenaOrderService {
 
     private final ArenaOrderRepository arenaOrderRepository;
+    private final BoosterService boosterService;
 
     @Override
     public void save(ArenaOrder arenaOrder) {
@@ -29,7 +31,9 @@ public class ArenaOrderServiceImpl implements ArenaOrderService {
     }
 
     @Override
-    public double getCostForArenaBoosting(int wins, int salary) {
-        return (double) wins * salary;
+    public double getCostForArenaBoosting(int wins, Long id) {
+        Booster booster = boosterService.findById(id);
+        int boosterSalary = booster.getSalary();
+        return (double) wins * boosterSalary;
     }
 }

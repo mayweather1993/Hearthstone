@@ -32,6 +32,8 @@ public class Booster implements Serializable {
 
     private LocalDate lastActive;
 
+    private int salary;
+
     @Enumerated
     private Status status;
 

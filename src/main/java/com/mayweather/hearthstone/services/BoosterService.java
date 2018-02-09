@@ -15,4 +15,6 @@ public interface BoosterService {
     Booster addBoostingOrderToBooster(Long booster_id, Long boosting_order_id);
 
     Booster addArenaOrderToBooster(Long booster_id, Long arena_order_id);
+
+    void setSalaryToBooster(Long id , int salary);
 }

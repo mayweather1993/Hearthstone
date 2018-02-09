@@ -21,7 +21,4 @@ public class ArenaOrder extends Order {
 
     @Column(name = "wins")
     private int wins;
-
-    @Column(name = "salary")
-    private int salary;
 }

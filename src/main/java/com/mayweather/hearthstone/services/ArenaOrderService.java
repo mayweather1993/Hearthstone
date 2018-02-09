@@ -12,5 +12,5 @@ public interface ArenaOrderService {
 
     Page<ArenaOrder> findAll(Pageable pageable);
 
-    double getCostForArenaBoosting(int wins, int salary);
+    double getCostForArenaBoosting(int wins, Long id);
 }

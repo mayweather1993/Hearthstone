@@ -1,6 +1,8 @@
 package com.mayweather.hearthstone.controllers;
 
+import com.mayweather.hearthstone.domain.Booster;
 import com.mayweather.hearthstone.domain.BoostingOrder;
+import com.mayweather.hearthstone.services.BoosterService;
 import com.mayweather.hearthstone.services.BoostingOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,8 +20,8 @@ public class BoostingOrderController {
 
 
     @PostMapping("/cost")
-    public ResponseEntity<Double> getCost(@RequestBody final int fromRank, final int toRank, final int salaryPerRank) {
-        double cost = boostingOrderService.getCost(fromRank, toRank, salaryPerRank);
+    public ResponseEntity<Double> getCost(@RequestBody final int fromRank, final int toRank , Long id) {
+        double cost = boostingOrderService.getCost(fromRank, toRank , id);
         return new ResponseEntity<>(cost, HttpStatus.OK);
     }
     @GetMapping("/getAll")
@@ -33,9 +35,8 @@ public class BoostingOrderController {
         return new ResponseEntity<>(order , HttpStatus.OK);
     }
     @PostMapping("/create")
-    public ResponseEntity<BoostingOrder> create(@RequestBody final int salaryPerRank , final int fromRank , final int toRank){
+    public ResponseEntity<BoostingOrder> create(@RequestBody final int fromRank , final int toRank){
         BoostingOrder boostingOrder = new BoostingOrder();
-        boostingOrder.setSalaryPerRank(salaryPerRank);
         boostingOrder.setFromRank(fromRank);
         boostingOrder.setToRank(toRank);
         boostingOrderService.save(boostingOrder);

@@ -12,6 +12,6 @@ public interface BoostingOrderService {
 
     Page<BoostingOrder> findAll(Pageable pageable);
 
-    double getCost(int startingRank, int endingRank, int salaryPerRank);
+    double getCost(int startingRank, int endingRank, Long id);
 
 }

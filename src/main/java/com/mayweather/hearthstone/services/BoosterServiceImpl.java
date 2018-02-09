@@ -53,4 +53,11 @@ public class BoosterServiceImpl implements BoosterService {
         return boosterRepository.save(booster);
     }
 
+    @Override
+    public void setSalaryToBooster(Long id , int salary) {
+        Booster booster = boosterRepository.getOne(id);
+        booster.setSalary(salary);
+        boosterRepository.save(booster);
+    }
+
 }
