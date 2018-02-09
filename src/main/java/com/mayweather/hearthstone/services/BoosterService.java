@@ -2,7 +2,6 @@ package com.mayweather.hearthstone.services;
 
 
 import com.mayweather.hearthstone.domain.Booster;
-import com.mayweather.hearthstone.domain.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,7 +12,7 @@ public interface BoosterService {
 
     Page<Booster> findAll(Pageable pageable);
 
-    Booster addOrderToBooster(Long order_id, Long booster_id);
+    Booster addBoostingOrderToBooster(Long booster_id, Long boosting_order_id);
 
-    Booster addArenaOrderToBooster(long arena_order_id , Long booster_id);
+    Booster addArenaOrderToBooster(Long booster_id, Long arena_order_id);
 }

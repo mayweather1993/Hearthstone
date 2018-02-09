@@ -1,9 +1,7 @@
 package com.mayweather.hearthstone.controllers;
 
 import com.mayweather.hearthstone.domain.Booster;
-import com.mayweather.hearthstone.domain.Order;
 import com.mayweather.hearthstone.services.BoosterService;
-import com.mayweather.hearthstone.services.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +18,9 @@ public class BoosterController {
 
 
     @PostMapping("/createBooster")
-    public ResponseEntity save(@RequestBody final Booster booster) {
+    public ResponseEntity<Booster> save(@RequestBody final Booster booster) {
         boosterService.save(booster);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(booster ,HttpStatus.OK);
     }
 
     @GetMapping("/booster/{id}")
@@ -37,13 +35,18 @@ public class BoosterController {
         return new ResponseEntity<>(boosterPage, HttpStatus.OK);
     }
 
-    @PostMapping("booster/{booster_id}/addOrder/{order_id}")
-    public ResponseEntity<Booster> addOrder(@PathVariable("booster_id") final Long booster_id,
-                                            @PathVariable("order_id") final Long order_id) {
-        Booster booster = boosterService.addOrderToBooster(order_id, booster_id);
+    @PostMapping("booster/{booster_id}/addBoostingOrder/{boosting_order_id}")
+    public ResponseEntity<Booster> addBoostingOrder(@PathVariable("booster_id") final Long booster_id,
+                                                    @PathVariable("boosting_order_id") final Long boosting_order_id) {
+        Booster booster = boosterService.addBoostingOrderToBooster(booster_id, boosting_order_id);
         boosterService.save(booster);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(booster , HttpStatus.OK);
     }
-
-
+    @PostMapping("booster/{booster_id}/addArenaOrder/{arena_order_id}")
+    public ResponseEntity<Booster> addArenaOrder(@PathVariable("booster_id") final Long booster_id,
+                                                 @PathVariable("arena_order_id") final Long arena_order_id){
+        Booster booster = boosterService.addArenaOrderToBooster(booster_id, arena_order_id);
+        boosterService.save(booster);
+        return new ResponseEntity<>(booster , HttpStatus.OK);
+    }
 }

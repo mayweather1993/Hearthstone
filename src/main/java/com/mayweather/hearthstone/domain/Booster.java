@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -35,5 +36,8 @@ public class Booster implements Serializable {
     private Status status;
 
     @OneToMany(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
-    private List<Order> orderList;
+    private List<BoostingOrder> boostingOrderList;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ArenaOrder> arenaOrderList;
 }

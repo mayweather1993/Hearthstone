@@ -1,28 +1,13 @@
 package com.mayweather.hearthstone;
 
-import com.mayweather.hearthstone.domain.Booster;
-import com.mayweather.hearthstone.domain.Order;
-import com.mayweather.hearthstone.domain.OrderDetails;
-import com.mayweather.hearthstone.domain.Status;
 import com.mayweather.hearthstone.services.BoosterService;
-import com.mayweather.hearthstone.services.OrderDetailsService;
-import com.mayweather.hearthstone.services.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 @SpringBootApplication
-@AllArgsConstructor
 public class HearthstoneApplication  {
 
-    private final OrderService orderService;
-    private final BoosterService boosterService;
 
     public static void main(String[] args) {
         SpringApplication.run(HearthstoneApplication.class, args);
