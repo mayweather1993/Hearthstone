@@ -3,6 +3,8 @@ package com.mayweather.hearthstone.services;
 import com.mayweather.hearthstone.data.ArenaOrderRepository;
 import com.mayweather.hearthstone.domain.ArenaOrder;
 import com.mayweather.hearthstone.domain.Booster;
+import com.mayweather.hearthstone.exceptions.DuplicateException;
+import com.mayweather.hearthstone.exceptions.NoSuchArenaOrderException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +24,9 @@ public class ArenaOrderServiceImpl implements ArenaOrderService {
 
     @Override
     public ArenaOrder findById(Long id) {
+        if (!arenaOrderRepository.existsById(id)) {
+            throw new NoSuchArenaOrderException("No such arena order with id : " + id);
+        }
         return arenaOrderRepository.getOne(id);
     }
 

@@ -25,6 +25,7 @@ public class Booster implements Serializable {
     @Column(name = "id")
     private Long id;
 
+
     private String firstName;
 
     private String description;
