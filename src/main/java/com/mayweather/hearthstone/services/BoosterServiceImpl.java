@@ -31,16 +31,14 @@ public class BoosterServiceImpl implements BoosterService {
     public void save(final Booster booster) {
         if (boosterRepository.existsById(booster.getId())) {
             throw new DuplicateException("This booster has been already created");
+        } else {
+            boosterRepository.save(booster);
         }
-        boosterRepository.save(booster);
     }
 
     @Override
     public Booster findById(final Long id) {
-        if (!boosterRepository.existsById(id)) {
-            throw new NoSuchBoosterException("No such booster with id : " + id);
-        }
-        return boosterRepository.getOne(id);
+        return boosterException(id);
     }
 
     @Override
@@ -50,13 +48,9 @@ public class BoosterServiceImpl implements BoosterService {
 
     @Override
     public Booster addBoostingOrderToBooster(Long booster_id, Long boosting_order_id) {
-        if (!boosterRepository.existsById(booster_id)) {
-            throw new NoSuchBoosterException("No such booster available with id : " + booster_id);
-        }
+        Booster booster = boosterException(booster_id);
         BoostingOrder order = boostingOrderService.findById(boosting_order_id);
-
         boostingOrderService.save(order);
-        Booster booster = boosterRepository.getOne(booster_id);
         if (booster.getStatus() == Status.WORKING) {
             throw new NotAvailableBoosterException();
         } else {
@@ -68,10 +62,7 @@ public class BoosterServiceImpl implements BoosterService {
 
     @Override
     public Booster addArenaOrderToBooster(Long booster_id, Long arena_order_id) {
-        if (boosterRepository.existsById(booster_id)) {
-            throw new NoSuchBoosterException("No such booster available with this id : " + booster_id);
-        }
-        Booster booster = boosterRepository.getOne(booster_id);
+        Booster booster = boosterException(booster_id);
         ArenaOrder order = arenaOrderService.findById(arena_order_id);
         arenaOrderService.save(order);
         if (booster.getStatus() == Status.WORKING) {
@@ -85,9 +76,15 @@ public class BoosterServiceImpl implements BoosterService {
 
     @Override
     public void setSalaryToBooster(Long id, int salary) {
-        Booster booster = boosterRepository.getOne(id);
+        Booster booster = boosterException(id);
         booster.setSalary(salary);
         boosterRepository.save(booster);
     }
 
+    private Booster boosterException(Long id) {
+        if (!boosterRepository.existsById(id)) {
+            throw new NoSuchBoosterException("No such booster available with this id : " + id);
+        }
+        return boosterRepository.getOne(id);
+    }
 }
