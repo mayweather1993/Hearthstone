@@ -6,6 +6,7 @@ import com.mayweather.hearthstone.domain.ArenaOrder;
 import com.mayweather.hearthstone.domain.Booster;
 import com.mayweather.hearthstone.domain.BoostingOrder;
 import com.mayweather.hearthstone.domain.Status;
+import com.mayweather.hearthstone.exceptions.NoSuchBoosterException;
 import com.mayweather.hearthstone.exceptions.NotAvailableBoosterException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Lazy;
@@ -35,6 +36,9 @@ public class BoosterServiceImpl implements BoosterService {
 
     @Override
     public Booster findById(final Long id) {
+        if(!boosterRepository.existsById(id)){
+            throw new NoSuchBoosterException("No such booster with id : " + id);
+        }
         return boosterRepository.getOne(id);
     }
 
