@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,9 +38,12 @@ public class Booster implements Serializable {
     @Enumerated
     private Status status;
 
-    @OneToMany(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
-    private List<BoostingOrder> boostingOrderList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private BoostingOrder boostingOrder;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ArenaOrder> arenaOrderList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private ArenaOrder arenaOrder;
 }
+
