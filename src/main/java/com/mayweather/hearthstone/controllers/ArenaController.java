@@ -42,6 +42,6 @@ public class ArenaController {
         ArenaOrder arenaOrder = new ArenaOrder();
         arenaOrder.setWins(wins);
         arenaOrderService.save(arenaOrder);
-        return new ResponseEntity<>(arenaOrder, HttpStatus.OK);
+        return new ResponseEntity<>(arenaOrder, HttpStatus.CREATED);
     }
 }

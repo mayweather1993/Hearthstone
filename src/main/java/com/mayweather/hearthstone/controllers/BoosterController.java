@@ -20,7 +20,7 @@ public class BoosterController {
     @PostMapping
     public ResponseEntity<Booster> save(@RequestBody final Booster booster) {
         boosterService.save(booster);
-        return new ResponseEntity<>(booster ,HttpStatus.OK);
+        return new ResponseEntity<>(booster ,HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
