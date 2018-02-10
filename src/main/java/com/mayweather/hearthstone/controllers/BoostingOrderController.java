@@ -40,6 +40,6 @@ public class BoostingOrderController {
         boostingOrder.setFromRank(fromRank);
         boostingOrder.setToRank(toRank);
         boostingOrderService.save(boostingOrder);
-        return new ResponseEntity<>(boostingOrder , HttpStatus.OK);
+        return new ResponseEntity<>(boostingOrder , HttpStatus.CREATED);
     }
  }
