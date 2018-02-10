@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/boost")
+@RequestMapping("/boosting_orders")
 @AllArgsConstructor
 public class BoostingOrderController {
 
@@ -24,7 +24,7 @@ public class BoostingOrderController {
         double cost = boostingOrderService.getCost(fromRank, toRank , id);
         return new ResponseEntity<>(cost, HttpStatus.OK);
     }
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<Page<BoostingOrder>> getAll(final Pageable pageable){
         Page<BoostingOrder> orders = boostingOrderService.findAll(pageable);
         return new ResponseEntity<>(orders , HttpStatus.OK);
@@ -34,8 +34,8 @@ public class BoostingOrderController {
         BoostingOrder order = boostingOrderService.findById(id);
         return new ResponseEntity<>(order , HttpStatus.OK);
     }
-    @PostMapping("/create")
-    public ResponseEntity<BoostingOrder> create(@RequestBody final int fromRank , final int toRank){
+    @PostMapping
+    public ResponseEntity<BoostingOrder> post(@RequestBody final int fromRank , final int toRank){
         BoostingOrder boostingOrder = new BoostingOrder();
         boostingOrder.setFromRank(fromRank);
         boostingOrder.setToRank(toRank);

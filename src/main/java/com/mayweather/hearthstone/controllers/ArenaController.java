@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/arena")
+@RequestMapping("/arena_orders")
 public class ArenaController {
 
     private final ArenaOrderService arenaOrderService;
     private final BoosterService boosterService;
 
     @PostMapping("/cost")
-    public ResponseEntity<Double> getCostForArenaBoosting(@RequestBody int wins, Long id) {
+    public ResponseEntity<Double> getCost(@RequestBody int wins, Long id) {
         double costForArenaBoosting = arenaOrderService.getCostForArenaBoosting(wins, id);
         return new ResponseEntity<>(costForArenaBoosting, HttpStatus.OK);
     }
 
-    @GetMapping("/getAllArenaOrders")
+    @GetMapping
     public ResponseEntity<Page<ArenaOrder>> getAll(Pageable pageable) {
         Page<ArenaOrder> arenaOrders = arenaOrderService.findAll(pageable);
         return new ResponseEntity<>(arenaOrders, HttpStatus.OK);
@@ -37,8 +37,8 @@ public class ArenaController {
         return new ResponseEntity<>(arenaOrder, HttpStatus.OK);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity create(@RequestBody int wins) {
+    @PostMapping
+    public ResponseEntity post(@RequestBody int wins) {
         ArenaOrder arenaOrder = new ArenaOrder();
         arenaOrder.setWins(wins);
         arenaOrderService.save(arenaOrder);

@@ -6,6 +6,7 @@ import com.mayweather.hearthstone.domain.ArenaOrder;
 import com.mayweather.hearthstone.domain.Booster;
 import com.mayweather.hearthstone.domain.BoostingOrder;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,13 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-@AllArgsConstructor
 public class BoosterServiceImpl implements BoosterService {
+
+    public BoosterServiceImpl(@Lazy BoosterRepository boosterRepository,@Lazy BoostingOrderService boostingOrderService,@Lazy ArenaOrderService arenaOrderService) {
+        this.boosterRepository = boosterRepository;
+        this.boostingOrderService = boostingOrderService;
+        this.arenaOrderService = arenaOrderService;
+    }
 
     private final BoosterRepository boosterRepository;
     private final BoostingOrderService boostingOrderService;
